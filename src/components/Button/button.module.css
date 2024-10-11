@@ -1,0 +1,21 @@
+@import "../../variables.css";
+
+.btnTable {
+  width: 60px;
+  margin: 0 10px;
+  padding: 3px;
+  background-color: var(--greenLight);
+}
+
+.btnRed {
+  background-color: var(--red);
+  color: var(--white);
+}
+.btnBlue {
+  background-color: var(--blue);
+  color: var(--black);
+}
+.btnYellow {
+  background-color: var(--yellow);
+  color: var(--black);
+}

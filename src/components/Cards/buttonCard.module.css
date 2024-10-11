@@ -1,0 +1,12 @@
+@import "../../variables.css";
+
+.btn {
+  display: inline-block;
+  background-color: var(--green);
+  color: var(--white);
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 15px;
+  padding: 5px 25px;
+  margin: 0 40px 40px;
+}

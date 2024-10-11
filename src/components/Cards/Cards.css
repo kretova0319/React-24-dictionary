@@ -1,0 +1,21 @@
+@import "../../variables.css";
+
+.card {
+  margin: 30px;
+  width: 220px;
+  height: 300px;
+  border: 2px solid #000;
+  border-radius: 5%;
+  background-color: var(--grey);
+  color: var(--black);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+.card__main {
+  flex: 1 1 auto;
+}
+.word {
+  font-size: 25px;
+  margin-top: 90px;
+}

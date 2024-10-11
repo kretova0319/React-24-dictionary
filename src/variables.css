@@ -1,0 +1,10 @@
+:root {
+  --green: rgba(8, 158, 53, 0.7);
+  --greenLight: rgba(8, 158, 53, 0.1);
+  --white: white;
+  --black: black;
+  --grey: hsl(0, 0%, 95%);
+  --red: rgb(194, 12, 12);
+  --blue: rgb(41, 128, 185);
+  --yellow: #f7f446;
+}
