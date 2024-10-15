@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import Cards from "../Cards/Cards";
 import { data } from "../../data";
-// import leftArrow from "../../Assets/left-arrow.svg";
-// import rihgtArrow from "../../Assets/right-arrow.svg";
-// import styles from "./carusel.module.css";
 import CardWrapper from "../CardWrapper/CardWrapper";
 
 export default function Carusel() {

@@ -10,8 +10,7 @@ export default function CardWrapper({
   showPreviousCard,
   showNextCard,
 }) {
-  //   const [word, setWord] = useState(8);
-  //   const { english, transcription, russian } = data[word];
+
 
   return (
     <div className={styles.wrapper}>
