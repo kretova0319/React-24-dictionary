@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Cards from "../Cards/Cards";
 import { data } from "../../data";
 import CardWrapper from "../CardWrapper/CardWrapper";
+import styles from "./carusel.module.css";
 
 export default function Carusel() {
   const [position, setPosition] = useState(8);
@@ -47,7 +48,7 @@ export default function Carusel() {
           handleClick={handleClick}
         />
       </CardWrapper>
-      <div className="number">
+      <div className={styles.number}>
         {position + 1}/{data.length}
       </div>
     </div>
