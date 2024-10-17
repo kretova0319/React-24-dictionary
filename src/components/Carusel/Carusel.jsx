@@ -47,6 +47,9 @@ export default function Carusel() {
           handleClick={handleClick}
         />
       </CardWrapper>
+      <div className="number">
+        {position + 1}/{data.length}
+      </div>
     </div>
   );
 }
