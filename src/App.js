@@ -7,7 +7,6 @@ function App() {
   return (
     <div>
       <Header />
-      {/* <Carusel /> */}
       <Carusel />
       <div className="container">
         <Table />

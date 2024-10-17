@@ -14,3 +14,12 @@
   background-color: var(--grey);
   padding: 10px;
 }
+.arrow:hover {
+  transition: 0.8s;
+  transform: scale(1.1);
+  background-color: var(--green);
+}
+.number {
+  display: flex;
+  justify-content: center;
+}
