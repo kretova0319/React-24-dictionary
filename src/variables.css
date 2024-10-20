@@ -4,7 +4,7 @@
   --white: white;
   --black: black;
   --grey: hsl(0, 0%, 95%);
-  --red: rgb(194, 12, 12);
-  --blue: rgb(41, 128, 185);
-  --yellow: #f7f446;
+  --red: rgb(194, 12, 12, 0.5);
+  --blue: rgb(41, 128, 185, 0.5);
+  --yellow: rgb(247, 244, 70, 0.5);
 }
