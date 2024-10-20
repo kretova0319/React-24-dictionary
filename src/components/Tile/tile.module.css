@@ -1,0 +1,38 @@
+@import "../../variables.css";
+
+.wrapper__tile {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.flashcard {
+  margin: 25px;
+  width: 220px;
+  height: 300px;
+  border: 2px solid #000;
+  border-radius: 5%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+.grey {
+  background-color: var(--grey);
+  color: var(--black);
+}
+.green {
+  background-color: var(--green);
+  color: var(--white);
+}
+.flashcard__main {
+  flex: 1 1 auto;
+}
+.flash__word {
+  font-size: 30px;
+  margin-top: 90px;
+  font-weight: bold;
+}
+.flash__btn {
+  position: relative;
+  left: 70px;
+  background: transparent;
+}

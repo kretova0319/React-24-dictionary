@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import Cards from "../Cards/Cards";
+import Card from "../Cards/Card";
 import { data } from "../../data";
-// import leftArrow from "../../Assets/left-arrow.svg";
-// import rihgtArrow from "../../Assets/right-arrow.svg";
-// import styles from "./carusel.module.css";
 import CardWrapper from "../CardWrapper/CardWrapper";
+import styles from "./carusel.module.css";
 
 export default function Carusel() {
   const [position, setPosition] = useState(8);
@@ -41,15 +39,18 @@ export default function Carusel() {
         showPreviousCard={showPreviousCard}
         showNextCard={showNextCard}
       >
-        <Cards
+        <Card
           key={position.id}
-          englishWord={english}
+          english={english}
           transcription={transcription}
-          russianWord={russian}
+          russian={russian}
           pressed={pressed}
           handleClick={handleClick}
         />
       </CardWrapper>
+      <div className={styles.number}>
+        {position + 1}/{data.length}
+      </div>
     </div>
   );
 }

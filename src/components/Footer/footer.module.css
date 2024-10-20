@@ -1,0 +1,10 @@
+.container__footer {
+  background-color: var(--black);
+  align-items: center;
+  display: flex;
+  height: 150px;
+  justify-content: center;
+}
+.logo {
+  max-width: 200px;
+}
