@@ -1,23 +1,28 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import style from "./header.module.css";
 
 function Header() {
   return (
     <header className={style.container__header}>
       <section className={style.wrapper__header}>
-        <Link to="/table">
+        <NavLink end to="/table">
           <img
             className={style.logo}
             src="https://sstk.biz/images/studystacklogo.svg"
             alt="логотип сайта"
           ></img>
-        </Link>
+        </NavLink>
 
         <div className={style.links}>
-          <Link to="/table">Table</Link>
-          <Link to="/game">Game</Link>
-          <Link to="/tile">Tile</Link>
-          <Link to="/404">404</Link>
+          <NavLink end to="/table">
+            Table
+          </NavLink>
+          <NavLink end to="/game">
+            Game
+          </NavLink>
+          <NavLink end to="/tile">
+            Tile
+          </NavLink>
         </div>
       </section>
     </header>

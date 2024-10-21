@@ -16,7 +16,7 @@ function App() {
           <Route path="/table" element={<Table />} />
           <Route path="/game" element={<Carusel />} />
           <Route path="/tile" element={<Tile />} />
-          <Route path="/404" element={<Error />} />
+          <Route path="*" element={<Error />} />
         </Routes>
       </main>
       <Footer />
