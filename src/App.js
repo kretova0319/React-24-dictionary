@@ -13,6 +13,7 @@ function App() {
       <Header />
       <main className={style.wrapper__main}>
         <Routes>
+          <Route path="/" element={<Table />} />
           <Route path="/table" element={<Table />} />
           <Route path="/game" element={<Carusel />} />
           <Route path="/tile" element={<Tile />} />

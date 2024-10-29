@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import style from "./header.module.css";
+// import "./header.css";
 
 function Header() {
   return (
@@ -14,13 +15,31 @@ function Header() {
         </NavLink>
 
         <div className={style.links}>
-          <NavLink end to="/table">
+          <NavLink
+            end
+            to="/table"
+            className={({ isActive }) =>
+              isActive ? `${style.active}` : undefined
+            }
+          >
             Table
           </NavLink>
-          <NavLink end to="/game">
+          <NavLink
+            end
+            to="/game"
+            className={({ isActive }) =>
+              isActive ? `${style.active}` : undefined
+            }
+          >
             Game
           </NavLink>
-          <NavLink end to="/tile">
+          <NavLink
+            end
+            to="/tile"
+            className={({ isActive }) =>
+              isActive ? `${style.active}` : undefined
+            }
+          >
             Tile
           </NavLink>
         </div>

@@ -35,5 +35,8 @@ a:hover {
 }
 .active {
   color: var(--green);
+  font-size: 18px;
+  font-weight: bold;
   transform: scale(1.1);
+  border-bottom: 1px solid;
 }

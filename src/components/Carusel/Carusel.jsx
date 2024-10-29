@@ -8,9 +8,11 @@ export default function Carusel() {
   const [position, setPosition] = useState(8);
   const [pressed, setPressed] = useState(false);
   const { english, transcription, russian } = data[position];
+  const [count, setCount] = useState(0);
 
   function handleClick() {
     setPressed(!pressed);
+    setCount(count + 1);
   }
 
   const showPreviousCard = () => {
@@ -35,6 +37,7 @@ export default function Carusel() {
 
   return (
     <div>
+      <h1>Количество карточек, изученных сегодня: {count}</h1>
       <CardWrapper
         showPreviousCard={showPreviousCard}
         showNextCard={showNextCard}

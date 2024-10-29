@@ -10,7 +10,20 @@
   padding: 5px 25px;
   margin: 0 40px 40px;
 }
-.btn:hover {
+.btnfocused {
+  display: inline-block;
+  background-color: var(--green);
+  border: 1px solid #000;
+  color: var(--white);
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 15px;
+  padding: 10px 25px;
+  margin: 0 40px 40px;
+  transition: 1.5s;
+  transform: scale(1.2);
+}
+/* .btn:hover {
   transition: 0.8s;
   transform: scale(1.1);
-}
+} */
