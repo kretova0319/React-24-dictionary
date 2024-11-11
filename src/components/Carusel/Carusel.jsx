@@ -10,11 +10,12 @@ export default function Carusel() {
   const { english, transcription, russian } = data[position];
   const [count, setCount] = useState(0);
 
+  //Посчитать и вывести количество проверенных карточек
   function handleClick() {
     setPressed(!pressed);
     setCount(count + 1);
   }
-
+  // Показать предыдущую карточку
   const showPreviousCard = () => {
     if (position === 0) {
       setPosition(data.length - 1);
@@ -24,7 +25,7 @@ export default function Carusel() {
       setPressed(false);
     }
   };
-
+  // Показать слудующую карточку
   const showNextCard = () => {
     if (position === data.length - 1) {
       setPosition(0);

@@ -4,7 +4,14 @@ import Button from "../Button/Button";
 import "./table.css";
 import "../Button/button.module.css";
 
-export default function TableRow({ english, transcription, russian, tags }) {
+export default function TableRow({
+  english,
+  transcription,
+  russian,
+  tags,
+  id,
+  onClick,
+}) {
   const [isClicked, setIsClicked] = useState(false);
   const [valueEnglish, setValueEnglish] = useState(english);
   const [valueTranscription, setValueTranscription] = useState(transcription);
@@ -32,6 +39,7 @@ export default function TableRow({ english, transcription, russian, tags }) {
   const cancel = () => {
     setIsClicked(false);
   };
+
   return (
     <tr>
       {isClicked ? (
@@ -69,7 +77,7 @@ export default function TableRow({ english, transcription, russian, tags }) {
         {isClicked ? (
           <Button text="Cancel" color="btnBlue" onClick={cancel} />
         ) : (
-          <Button text="Delete" color="btnRed" />
+          <Button text="Delete" color="btnRed" onClick={() => onClick(id)} />
         )}
       </td>
     </tr>
