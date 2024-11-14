@@ -10,7 +10,7 @@ export default function TableRow({
   russian,
   tags,
   id,
-  onClick,
+  handleDel,
 }) {
   const [isClicked, setIsClicked] = useState(false);
   const [valueEnglish, setValueEnglish] = useState(english);
@@ -43,43 +43,51 @@ export default function TableRow({
   return (
     <tr>
       {isClicked ? (
-        <td>
-          <input type="text" value={valueEnglish} onChange={getValueEnglish} />
-        </td>
+        <>
+          <td>
+            <input
+              type="text"
+              value={valueEnglish}
+              onChange={getValueEnglish}
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              value={valueTranscription}
+              onChange={getValueTranscription}
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              value={valueRussian}
+              onChange={getValueRussian}
+            />
+          </td>
+          <td>{tags}</td>
+          <td className="table__btns">
+            <Button text="Save" color="btnGreen" />
+            <Button text="Cancel" color="btnBlue" onClick={cancel} />
+          </td>
+        </>
       ) : (
-        <td>{english}</td>
+        <>
+          <td>{english}</td>
+          <td>{transcription}</td>
+          <td>{russian}</td>
+          <td>{tags}</td>
+          <td className="table__btns">
+            <Button text="Edit" color="btnYellow" onClick={showInput} />
+            <Button
+              text="Delete"
+              color="btnRed"
+              handleDelet={handleDel}
+              id={id}
+            />
+          </td>
+        </>
       )}
-      {isClicked ? (
-        <td>
-          <input
-            type="text"
-            value={valueTranscription}
-            onChange={getValueTranscription}
-          />
-        </td>
-      ) : (
-        <td>{transcription}</td>
-      )}
-      {isClicked ? (
-        <td>
-          <input type="text" value={valueRussian} onChange={getValueRussian} />
-        </td>
-      ) : (
-        <td>{russian}</td>
-      )}
-      <td>{tags}</td>
-      <td className="table__btns">
-        {isClicked ? (
-          <Button text="Save" color="btnGreen" />
-        ) : (
-          <Button text="Edit" color="btnYellow" onClick={showInput} />
-        )}
-        {isClicked ? (
-          <Button text="Cancel" color="btnBlue" onClick={cancel} />
-        ) : (
-          <Button text="Delete" color="btnRed" onClick={() => onClick(id)} />
-        )}
-      </td>
     </tr>
   );
 }

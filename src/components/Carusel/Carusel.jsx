@@ -25,7 +25,7 @@ export default function Carusel() {
       setPressed(false);
     }
   };
-  // Показать слудующую карточку
+  // Показать следующую карточку
   const showNextCard = () => {
     if (position === data.length - 1) {
       setPosition(0);
