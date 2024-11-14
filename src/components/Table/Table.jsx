@@ -31,13 +31,7 @@ function Table() {
         </thead>
         <tbody>
           {items.map((word) => {
-            return (
-              <TableRow
-                key={word.id}
-                {...word}
-                onClick={() => deleteItem(word.id)}
-              />
-            );
+            return <TableRow key={word.id} {...word} handlDel={deleteItem} />;
           })}
         </tbody>
       </table>
