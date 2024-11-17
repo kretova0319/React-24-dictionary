@@ -1,16 +1,21 @@
 import React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../Button/Button";
 import "./table.css";
 import "../Button/button.module.css";
+import useValidation from "../../../src/Hooks/useValidation";
 
 export default function TableRow({ rowData, handleDel }) {
+  const {
+    inputErrorText,
+    isInputError,
+    isDisabled,
+    setIsDisabled,
+    validateField,
+  } = useValidation();
   const { id, english, transcription, russian, tags } = rowData;
   const [isClicked, setIsClicked] = useState(false);
-  //Создаем 1 value вместо 3-х
-  // const [valueEnglish, setValueEnglish] = useState(english);
-  // const [valueTranscription, setValueTranscription] = useState(transcription);
-  // const [valueRussian, setValueRussian] = useState(russian);
+
   const [value, setValue] = useState({
     id: id,
     english: english,
@@ -18,9 +23,24 @@ export default function TableRow({ rowData, handleDel }) {
     russian: russian,
   });
 
+  useEffect(() => {
+    if (
+      isInputError.english ||
+      isInputError.transcription ||
+      isInputError.russian
+    ) {
+      setIsDisabled(true);
+    } else {
+      setIsDisabled(false);
+    }
+  }, [isInputError]);
+
   function handleChange(event) {
+    const name = event.target.name;
+    const value = event.target.value;
+    validateField(name, value);
     setValue((prevValue) => {
-      return { ...prevValue, [event.target.name]: event.target.value };
+      return { ...prevValue, [name]: value.trim() };
     });
   }
 
@@ -49,6 +69,9 @@ export default function TableRow({ rowData, handleDel }) {
               value={value.english}
               onChange={handleChange}
             />
+            {inputErrorText.english && isInputError.english && (
+              <p className="error">{inputErrorText.english}</p>
+            )}
           </td>
           <td>
             <input
@@ -57,6 +80,9 @@ export default function TableRow({ rowData, handleDel }) {
               value={value.transcription}
               onChange={handleChange}
             />
+            {inputErrorText.transcription && isInputError.transcription && (
+              <p className="error">{inputErrorText.transcription}</p>
+            )}
           </td>
           <td>
             <input
@@ -65,10 +91,18 @@ export default function TableRow({ rowData, handleDel }) {
               value={value.russian}
               onChange={handleChange}
             />
+            {inputErrorText.russian && isInputError.russian && (
+              <p className="error">{inputErrorText.russian}</p>
+            )}
           </td>
           <td>{tags}</td>
           <td className="table__btns">
-            <Button text="Save" color="btnGreen" handler={handleSave} />
+            <Button
+              text="Save"
+              color="btnGreen"
+              handler={handleSave}
+              disabled={isDisabled}
+            />
             <Button text="Cancel" color="btnBlue" handler={handleCancel} />
           </td>
         </>
