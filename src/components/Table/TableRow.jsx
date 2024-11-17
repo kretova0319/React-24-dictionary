@@ -4,40 +4,38 @@ import Button from "../Button/Button";
 import "./table.css";
 import "../Button/button.module.css";
 
-export default function TableRow({
-  english,
-  transcription,
-  russian,
-  tags,
-  id,
-  handleDel,
-}) {
+export default function TableRow({ rowData, handleDel }) {
+  const { id, english, transcription, russian, tags } = rowData;
   const [isClicked, setIsClicked] = useState(false);
-  const [valueEnglish, setValueEnglish] = useState(english);
-  const [valueTranscription, setValueTranscription] = useState(transcription);
-  const [valueRussian, setValueRussian] = useState(russian);
+  //Создаем 1 value вместо 3-х
+  // const [valueEnglish, setValueEnglish] = useState(english);
+  // const [valueTranscription, setValueTranscription] = useState(transcription);
+  // const [valueRussian, setValueRussian] = useState(russian);
+  const [value, setValue] = useState({
+    id: id,
+    english: english,
+    transcription: transcription,
+    russian: russian,
+  });
 
-  function getValueEnglish(event) {
-    const newValueEnglish = event.target.value;
-    setValueEnglish(newValueEnglish);
+  function handleChange(event) {
+    setValue((prevValue) => {
+      return { ...prevValue, [event.target.name]: event.target.value };
+    });
   }
 
-  function getValueTranscription(event) {
-    const newValueTranscription = event.target.value;
-    setValueTranscription(newValueTranscription);
-  }
-
-  function getValueRussian(event) {
-    const newValueRussian = event.target.value;
-    setValueRussian(newValueRussian);
-  }
-
-  const showInput = () => {
-    setIsClicked(true);
+  const handleEdit = () => {
+    setIsClicked((prevValue) => !prevValue);
   };
 
-  const cancel = () => {
-    setIsClicked(false);
+  const handleCancel = () => {
+    setValue({ ...rowData });
+    setIsClicked((prevValue) => !prevValue);
+  };
+
+  const handleSave = () => {
+    setValue({ ...value });
+    setIsClicked((prevValue) => !prevValue);
   };
 
   return (
@@ -47,44 +45,42 @@ export default function TableRow({
           <td>
             <input
               type="text"
-              value={valueEnglish}
-              onChange={getValueEnglish}
+              name={"english"}
+              value={value.english}
+              onChange={handleChange}
             />
           </td>
           <td>
             <input
               type="text"
-              value={valueTranscription}
-              onChange={getValueTranscription}
+              name={"transcription"}
+              value={value.transcription}
+              onChange={handleChange}
             />
           </td>
           <td>
             <input
               type="text"
-              value={valueRussian}
-              onChange={getValueRussian}
+              name={"russian"}
+              value={value.russian}
+              onChange={handleChange}
             />
           </td>
           <td>{tags}</td>
           <td className="table__btns">
-            <Button text="Save" color="btnGreen" />
-            <Button text="Cancel" color="btnBlue" onClick={cancel} />
+            <Button text="Save" color="btnGreen" handler={handleSave} />
+            <Button text="Cancel" color="btnBlue" handler={handleCancel} />
           </td>
         </>
       ) : (
         <>
-          <td>{english}</td>
-          <td>{transcription}</td>
-          <td>{russian}</td>
-          <td>{tags}</td>
+          <td>{value.english}</td>
+          <td>{value.transcription}</td>
+          <td>{value.russian}</td>
+          <td>{value.tags}</td>
           <td className="table__btns">
-            <Button text="Edit" color="btnYellow" onClick={showInput} />
-            <Button
-              text="Delete"
-              color="btnRed"
-              handleDelet={handleDel}
-              id={id}
-            />
+            <Button text="Edit" color="btnYellow" handler={handleEdit} />
+            <Button text="Delete" color="btnRed" handler={handleDel} id={id} />
           </td>
         </>
       )}

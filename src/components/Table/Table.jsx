@@ -4,16 +4,10 @@ import TableRow from "./TableRow";
 import { useState } from "react";
 
 function Table() {
-  // Удаление строки по нажатию на кнопку
-  //в консоли id показывает и новый массив уменьшается
-  // раз data передан items, то и мэпим мы items, а не data для TableRow
   const [items, setItems] = useState(data);
 
   const deleteItem = (id) => {
-    console.log("click");
     let newListItems = items.filter((word) => word.id !== id);
-    console.log(newListItems);
-
     setItems(newListItems);
   };
   console.log(items);
@@ -33,7 +27,9 @@ function Table() {
         </thead>
         <tbody>
           {items.map((word) => {
-            return <TableRow key={word.id} {...word} handleDel={deleteItem} />;
+            return (
+              <TableRow key={word.id} rowData={word} handleDel={deleteItem} />
+            );
           })}
         </tbody>
       </table>
