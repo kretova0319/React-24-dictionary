@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Card from "../Cards/Card";
 import { data } from "../../data";
 import CardWrapper from "../CardWrapper/CardWrapper";
@@ -9,6 +9,20 @@ export default function Carusel() {
   const [pressed, setPressed] = useState(false);
   const { english, transcription, russian } = data[position];
   const [count, setCount] = useState(0);
+
+  // Получаем с API список слов, загружаем на страницу - НЕ РАБОТАЕТ!!!!
+  // const [words, setWords] = useState([]);
+
+  // useEffect(() => {
+  //   getWords();
+  // }, []);
+
+  // const getWords = async () => {
+  //   const response = await fetch("http://itgirlschool.justmakeit.ru/api/words");
+  //   const datatWords = await response.json();
+  //   console.log(datatWords);
+  //   setWords(datatWords);
+  // };
 
   //Посчитать и вывести количество проверенных карточек
   function handleClick() {

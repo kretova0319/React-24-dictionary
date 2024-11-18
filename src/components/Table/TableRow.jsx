@@ -101,7 +101,7 @@ export default function TableRow({ rowData, handleDel }) {
               text="Save"
               color="btnGreen"
               handler={handleSave}
-              disabled={isDisabled}
+              handleDisabled={isDisabled}
             />
             <Button text="Cancel" color="btnBlue" handler={handleCancel} />
           </td>

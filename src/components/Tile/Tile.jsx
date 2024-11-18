@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { data } from "../../data";
+import React, { useState, useEffect } from "react";
+// import { data } from "../../data";
 import FlashCard from "./FlashCard";
 import style from "./tile.module.css";
 
@@ -13,6 +13,19 @@ export default function Tile() {
   const showRussian = () => {
     setisEnglish(false);
   };
+
+  // Получаем с API список слов, загружаем на страницу
+  const [words, setWords] = useState([]);
+  useEffect(() => {
+    getWords();
+  }, []);
+  const getWords = async () => {
+    const response = await fetch("http://itgirlschool.justmakeit.ru/api/words");
+    const datatWords = await response.json();
+    console.log(datatWords);
+    setWords(datatWords);
+  };
+
   return (
     <div>
       <form>
@@ -27,7 +40,7 @@ export default function Tile() {
         Show all RUSSIAN
       </form>
       <div className={style.wrapper__tile}>
-        {data.map((card) => (
+        {words.map((card) => (
           <FlashCard key={card.id} {...card} />
         ))}
       </div>

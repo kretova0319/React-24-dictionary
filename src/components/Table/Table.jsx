@@ -1,16 +1,29 @@
-import React from "react";
-import { data } from "../../data";
+import React, { useEffect } from "react";
+// import { data } from "../../data";
 import TableRow from "./TableRow";
 import { useState } from "react";
 
 function Table() {
-  const [items, setItems] = useState(data);
+  // Получаем с API список слов, загружаем на страницу
+  const [words, setWords] = useState([]);
 
-  const deleteItem = (id) => {
-    let newListItems = items.filter((word) => word.id !== id);
-    setItems(newListItems);
+  useEffect(() => {
+    getWords();
+  }, []);
+
+  const getWords = async () => {
+    const response = await fetch("http://itgirlschool.justmakeit.ru/api/words");
+    const datatWords = await response.json();
+    console.log(datatWords);
+    setWords(datatWords);
   };
-  console.log(items);
+
+  // Удаляем слова по кнопке в таблице
+  const deleteItem = (id) => {
+    let newListWords = words.filter((word) => word.id !== id);
+    setWords(newListWords);
+  };
+  console.log(words);
 
   return (
     <div>
@@ -26,7 +39,7 @@ function Table() {
           </tr>
         </thead>
         <tbody>
-          {items.map((word) => {
+          {words.map((word) => {
             return (
               <TableRow key={word.id} rowData={word} handleDel={deleteItem} />
             );
