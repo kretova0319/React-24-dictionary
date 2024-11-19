@@ -5,11 +5,6 @@ import CardWrapper from "../CardWrapper/CardWrapper";
 import styles from "./carusel.module.css";
 
 export default function Carusel() {
-  const [position, setPosition] = useState(8);
-  const [pressed, setPressed] = useState(false);
-  const { english, transcription, russian } = data[position];
-  const [count, setCount] = useState(0);
-
   // Получаем с API список слов, загружаем на страницу - НЕ РАБОТАЕТ!!!!
   // const [words, setWords] = useState([]);
 
@@ -23,6 +18,11 @@ export default function Carusel() {
   //   console.log(datatWords);
   //   setWords(datatWords);
   // };
+
+  const [position, setPosition] = useState(8);
+  const [pressed, setPressed] = useState(false);
+  const { english, transcription, russian } = data[position];
+  const [count, setCount] = useState(0);
 
   //Посчитать и вывести количество проверенных карточек
   function handleClick() {

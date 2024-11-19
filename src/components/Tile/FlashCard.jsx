@@ -1,12 +1,15 @@
 import { useState } from "react";
 import style from "./tile.module.css";
 
-export default function FlashCard({ english, russian }) {
+export default function FlashCard({ english, russian, isEnglish }) {
   const [isClicked, setIsClicked] = useState(false);
 
   const changeCard = () => {
     setIsClicked(!isClicked);
   };
+  // где обьявлять эту const? isEnglish - нужен здесь, setisEnglish - нужен в компоненте Tile
+  // const [isEnglish, setisEnglish] = useState(true);
+
   return (
     <div
       className={
@@ -18,9 +21,9 @@ export default function FlashCard({ english, russian }) {
     >
       <div className={style.flashcard__main}>
         {isClicked ? (
-          <p className={style.flash__word}>{russian}</p>
+          <p className={style.flash__word}>{isEnglish ? english : russian}</p>
         ) : (
-          <p className={style.flash__word}>{english}</p>
+          <p className={style.flash__word}>{isEnglish ? russian : english}</p>
         )}
       </div>
       <div>

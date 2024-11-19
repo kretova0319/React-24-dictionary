@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import { data } from "../../data";
 import FlashCard from "./FlashCard";
 import style from "./tile.module.css";
 
@@ -7,11 +6,11 @@ export default function Tile() {
   const [isEnglish, setisEnglish] = useState(true);
 
   const showEnglish = () => {
-    setisEnglish(true);
+    setisEnglish(isEnglish);
   };
 
   const showRussian = () => {
-    setisEnglish(false);
+    setisEnglish(!isEnglish);
   };
 
   // Получаем с API список слов, загружаем на страницу
