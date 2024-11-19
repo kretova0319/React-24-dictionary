@@ -1,4 +1,4 @@
-export const data = [
+export const items = [
   {
     id: "16500",
     english: "ginger",

@@ -1,9 +1,12 @@
-import React, { useState } from "react";
-import { data } from "../../data";
+import React, { useState, useContext } from "react";
+// import { data } from "../../data";
 import FlashCard from "./FlashCard";
 import style from "./tile.module.css";
+import { WordsContext } from "../Context/WordsContext";
 
 export default function Tile() {
+  const { items } = useContext(WordsContext);
+
   const [isEnglish, setisEnglish] = useState(true);
 
   const showEnglish = () => {
@@ -27,7 +30,7 @@ export default function Tile() {
         Show all RUSSIAN
       </form>
       <div className={style.wrapper__tile}>
-        {data.map((card) => (
+        {items.map((card) => (
           <FlashCard key={card.id} {...card} />
         ))}
       </div>

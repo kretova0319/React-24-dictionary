@@ -1,16 +1,14 @@
-import React from "react";
-import { data } from "../../data";
+import React, { useContext } from "react";
 import TableRow from "./TableRow";
-import { useState } from "react";
+import { WordsContext } from "../Context/WordsContext";
 
 function Table() {
-  const [items, setItems] = useState(data);
+  const { items, setItems } = useContext(WordsContext);
 
   const deleteItem = (id) => {
     let newListItems = items.filter((word) => word.id !== id);
     setItems(newListItems);
   };
-  console.log(items);
 
   return (
     <div>

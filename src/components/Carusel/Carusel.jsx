@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Card from "../Cards/Card";
-import { data } from "../../data";
 import CardWrapper from "../CardWrapper/CardWrapper";
 import styles from "./carusel.module.css";
+// import { WordsContext } from "../Context/WordsContext";
+import { items } from "../../data";
 
 export default function Carusel() {
+  // const { items } = useContext(WordsContext);
+
   const [position, setPosition] = useState(8);
   const [pressed, setPressed] = useState(false);
-  const { english, transcription, russian } = data[position];
+  const { english, transcription, russian } = items[position];
   const [count, setCount] = useState(0);
 
   //Посчитать и вывести количество проверенных карточек
@@ -18,7 +21,7 @@ export default function Carusel() {
   // Показать предыдущую карточку
   const showPreviousCard = () => {
     if (position === 0) {
-      setPosition(data.length - 1);
+      setPosition(items.length - 1);
       setPressed(false);
     } else {
       setPosition(position - 1);
@@ -27,7 +30,7 @@ export default function Carusel() {
   };
   // Показать следующую карточку
   const showNextCard = () => {
-    if (position === data.length - 1) {
+    if (position === items.length - 1) {
       setPosition(0);
       setPressed(false);
     } else {
@@ -53,7 +56,7 @@ export default function Carusel() {
         />
       </CardWrapper>
       <div className={styles.number}>
-        {position + 1}/{data.length}
+        {position + 1}/{items.length}
       </div>
     </div>
   );
