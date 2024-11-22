@@ -1,12 +1,10 @@
 import React, { useState, useContext } from "react";
-// import { data } from "../../data";
 import FlashCard from "./FlashCard";
 import style from "./tile.module.css";
 import { WordsContext } from "../Context/WordsContext";
-import Loader from "../Loader/Loader";
 
 export default function Tile() {
-  const { items, isLoaded } = useContext(WordsContext);
+  const { items } = useContext(WordsContext);
 
   const [isEnglish, setisEnglish] = useState(true);
 
@@ -19,21 +17,18 @@ export default function Tile() {
   };
   return (
     <div>
-      {isLoaded ? (
-        <Loader />
-      ) : (
-        <form>
-          <input type="radio" name="language" value="1" onClick={showEnglish} />{" "}
-          Show all ENGLISH
-          <input
-            type="radio"
-            name="language"
-            value="2"
-            onClick={showRussian}
-          />{" "}
-          Show all RUSSIAN
-        </form>
-      )}
+      <form>
+        <input type="radio" name="language" value="1" onClick={showEnglish} />{" "}
+        Show all ENGLISH
+        <input
+          type="radio"
+          name="language"
+          value="2"
+          onClick={showRussian}
+        />{" "}
+        Show all RUSSIAN
+      </form>
+
       <div className={style.wrapper__tile}>
         {items.map((card) => (
           <FlashCard key={card.id} {...card} />

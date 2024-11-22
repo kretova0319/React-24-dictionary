@@ -41,7 +41,7 @@ export default function Carusel() {
 
   return (
     <div>
-      <h1>Количество карточек, изученных сегодня: {count}</h1>
+      <h2>Количество карточек, изученных сегодня: {count}</h2>
       <CardWrapper
         showPreviousCard={showPreviousCard}
         showNextCard={showNextCard}
