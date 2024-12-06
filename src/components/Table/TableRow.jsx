@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useEffect, useState } from "react";
 import Button from "../Button/Button";
 import "./table.css";
 import "../Button/button.module.css";
 import useValidation from "../../../src/Hooks/useValidation";
+import { WordsContext } from "../Context/WordsContext";
 
 export default function TableRow({ rowData, handleDel }) {
+  const { handleSave } = useContext(WordsContext);
   const {
     inputErrorText,
     isInputError,
@@ -15,7 +17,6 @@ export default function TableRow({ rowData, handleDel }) {
   } = useValidation();
   const { id, english, transcription, russian, tags } = rowData;
   const [isClicked, setIsClicked] = useState(false);
-
   const [value, setValue] = useState({
     id: id,
     english: english,
@@ -53,7 +54,8 @@ export default function TableRow({ rowData, handleDel }) {
     setIsClicked((prevValue) => !prevValue);
   };
 
-  const handleSave = () => {
+  const handleSaveWord = () => {
+    handleSave(value, value.id);
     setValue({ ...value });
     setIsClicked((prevValue) => !prevValue);
   };
@@ -100,7 +102,7 @@ export default function TableRow({ rowData, handleDel }) {
             <Button
               text="Save"
               color="btnGreen"
-              handler={handleSave}
+              handler={handleSaveWord}
               handleDisabled={isDisabled}
             />
             <Button text="Cancel" color="btnBlue" handler={handleCancel} />

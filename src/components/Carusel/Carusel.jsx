@@ -2,18 +2,22 @@ import React, { useState, useContext } from "react";
 import Card from "../Cards/Card";
 import CardWrapper from "../CardWrapper/CardWrapper";
 import styles from "./carusel.module.css";
-// import { WordsContext } from "../Context/WordsContext";
-import { items } from "../../data";
+import { WordsContext } from "../Context/WordsContext";
+// import { items } from "../../data";
 
 export default function Carusel() {
-  // const { items } = useContext(WordsContext);
+  //передаем состояние (слова из API) из WordsContext
+  const { items } = useContext(WordsContext);
 
-  const [position, setPosition] = useState(8);
+  const [position, setPosition] = useState(0);
   const [pressed, setPressed] = useState(false);
-  const { english, transcription, russian } = items[position];
-  const [count, setCount] = useState(0);
+
+  // создаем и деструктуризируем currentItem
+  const currentItem = items[position] || {};
+  const { english, transcription, russian } = currentItem;
 
   //Посчитать и вывести количество проверенных карточек
+  const [count, setCount] = useState(0);
   function handleClick() {
     setPressed(!pressed);
     setCount(count + 1);

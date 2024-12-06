@@ -5,7 +5,7 @@ import Loader from "../Loader/Loader";
 import AddWord from "./AddWord";
 
 function Table() {
-  const { items, deleteItem, isLoaded } = useContext(WordsContext);
+  const { items, deleteItem, isLoaded, handleAdd } = useContext(WordsContext);
 
   return (
     <div>

@@ -1,24 +1,14 @@
 import Button from "../Button/Button";
 import styles from "./addWord.module.css";
-import React, { useState } from "react";
-// import React, { useContext, useState } from "react";
-// import { WordsContext } from "../Context/WordsContext";
+import React, { useContext, useState } from "react";
+import { WordsContext } from "../Context/WordsContext";
 
 export default function AddWord() {
   // добавляем функцию addTask из TaskContext
-  //   const { addWord } = useContext(WordsContext);
+  const { handleAdd } = useContext(WordsContext);
 
-  // Добавляекм состояние для компонента
+  // Добавляем состояние для компонента
   const [newWord, setNewWord] = useState("");
-
-  const addNewWord = () => {};
-  // const addNewWord = (e) => {
-  //   e.preventDefault();
-  //   if (newWord.trim() === "") return; //Проверка на пустую строку
-
-  //   addNewWord({ id: Math.random(), english: newWord });
-  //   setNewWord(""); // Обнуляем поле инпут
-  // };
 
   return (
     <div className={styles.newword}>
@@ -47,7 +37,7 @@ export default function AddWord() {
         value={newWord}
         onChange={(e) => setNewWord(e.target.value)}
       />
-      <Button text="Add" color="btnGrassGreen" handler={addNewWord} />
+      <Button text="Add" color="btnGrassGreen" handler={handleAdd} />
     </div>
   );
 }
