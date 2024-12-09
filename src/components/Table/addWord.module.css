@@ -1,0 +1,28 @@
+.newword {
+  width: 90%;
+  margin: 30px auto;
+  text-align: center;
+}
+input {
+  border: 1px solid grey;
+  padding: 5px;
+  border-radius: 8px;
+  background-color: #f2f2f2;
+  font-size: 14px;
+  color: #333;
+  margin-right: 30px;
+}
+.error {
+  padding: 1px 5px;
+  color: red;
+  font-size: 11px;
+}
+.wordContainer {
+  display: flex;
+  flex-direction: column;
+  width: 130px;
+}
+.wordsContainer {
+  display: flex;
+  justify-content: space-around;
+}

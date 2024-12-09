@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 // import { data } from "../../data";
 import TableRow from "./TableRow";
 import { useState } from "react";
+import AddWord from "./AddWord";
 
 function Table() {
   // Получаем с API список слов, загружаем на страницу
@@ -27,6 +28,7 @@ function Table() {
 
   return (
     <div>
+      <AddWord />
       <table className="table">
         <caption>List of words</caption>
         <thead>
