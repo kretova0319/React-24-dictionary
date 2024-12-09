@@ -35,3 +35,8 @@
   background-color: var(--green);
   padding: 5px 15px;
 }
+.btnGrassGreen {
+  background-color: var(--grassGreen);
+  padding: 5px 15px;
+  height: 30px;
+}

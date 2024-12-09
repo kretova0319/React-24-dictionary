@@ -2,6 +2,7 @@ import React from "react";
 import { data } from "../../data";
 import TableRow from "./TableRow";
 import { useState } from "react";
+import AddWord from "./AddWord";
 
 function Table() {
   const [items, setItems] = useState(data);
@@ -14,6 +15,7 @@ function Table() {
 
   return (
     <div>
+      <AddWord />
       <table className="table">
         <caption>List of words</caption>
         <thead>
