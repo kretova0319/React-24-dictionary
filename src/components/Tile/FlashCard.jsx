@@ -1,33 +1,35 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import style from "./tile.module.css";
 
 export default function FlashCard({ english, russian, isEnglish }) {
-  const [isClicked, setIsClicked] = useState(false);
+  const [isFlipped, setIsFlipped] = useState(false); // Состояние переворота карточки
 
-  const changeCard = () => {
-    setIsClicked(!isClicked);
+  const toggleCard = () => {
+    setIsFlipped(!isFlipped);
   };
-  // где обьявлять эту const? isEnglish - нужен здесь, setisEnglish - нужен в компоненте Tile
-  // const [isEnglish, setisEnglish] = useState(true);
 
   return (
     <div
-      className={
-        isClicked
-          ? style.flashcard + " " + style.green
-          : style.flashcard + " " + style.grey
-      }
-      onClick={changeCard}
+      className={`${style.flashcard} ${
+        isFlipped
+          ? isEnglish
+            ? style.green
+            : style.grey
+          : isEnglish
+          ? style.grey
+          : style.green
+      }`}
+      onClick={toggleCard}
     >
       <div className={style.flashcard__main}>
-        {isClicked ? (
-          <p className={style.flash__word}>{isEnglish ? english : russian}</p>
-        ) : (
+        {isFlipped ? (
           <p className={style.flash__word}>{isEnglish ? russian : english}</p>
+        ) : (
+          <p className={style.flash__word}>{isEnglish ? english : russian}</p>
         )}
       </div>
       <div>
-        <button className={style.flash__btn}>click</button>
+        <button className={style.flash__btn}>Flip</button>
       </div>
     </div>
   );

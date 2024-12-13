@@ -21,6 +21,7 @@ export default function TableRow({ rowData, handleDel }) {
     english: english,
     transcription: transcription,
     russian: russian,
+    tags: tags,
   });
 
   useEffect(() => {
@@ -41,6 +42,8 @@ export default function TableRow({ rowData, handleDel }) {
     validateField(name, value);
     setValue((prevValue) => {
       return { ...prevValue, [name]: value.trim() };
+      // return { ...prevValue, [event.target.name]: event.target.value.trim() }; - более подробный вариант записи предыдущей строки
+      // берем предыдущий объект, в нем меняем value только измененного поля, атрибут name
     });
   }
 
@@ -95,7 +98,14 @@ export default function TableRow({ rowData, handleDel }) {
               <p className="error">{inputErrorText.russian}</p>
             )}
           </td>
-          <td>{tags}</td>
+          <td>
+            <input
+              type="text"
+              name={"tags"}
+              value={value.tags}
+              onChange={handleChange}
+            />
+          </td>
           <td className="table__btns">
             <Button
               text="Save"

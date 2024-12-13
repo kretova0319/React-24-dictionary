@@ -1,28 +1,30 @@
 import React, { useState, useEffect } from "react";
 import Card from "../Cards/Card";
-import { data } from "../../data";
 import CardWrapper from "../CardWrapper/CardWrapper";
 import styles from "./carusel.module.css";
 
 export default function Carusel() {
-  // Получаем с API список слов, загружаем на страницу - НЕ РАБОТАЕТ!!!!
-  // const [words, setWords] = useState([]);
+  const [words, setWords] = useState([]); // Состояние для изначального списка слов
+  const [position, setPosition] = useState(0); // состояние для номера 1-ой карточки
+  const [pressed, setPressed] = useState(false); // состояние кликнута карточка для проверки или нет
+  const [count, setCount] = useState(0); // состояние для подсчета кликнутых карточек
 
-  // useEffect(() => {
-  //   getWords();
-  // }, []);
+  // Получаем с API список слов, загружаем на страницу
+  useEffect(() => {
+    getWords();
+  }, []);
 
-  // const getWords = async () => {
-  //   const response = await fetch("http://itgirlschool.justmakeit.ru/api/words");
-  //   const datatWords = await response.json();
-  //   console.log(datatWords);
-  //   setWords(datatWords);
-  // };
+  const getWords = async () => {
+    const response = await fetch("http://itgirlschool.justmakeit.ru/api/words");
+    const datatWords = await response.json();
+    console.log(datatWords);
+    setWords(datatWords);
+  };
 
-  const [position, setPosition] = useState(8);
-  const [pressed, setPressed] = useState(false);
-  const { english, transcription, russian } = data[position];
-  const [count, setCount] = useState(0);
+  // При загрузке слов с API возникает ошибка, если слова еще не загрузились.
+  // Поэтому сначала проверяем наличие текущего элемента
+  const currentWord = words[position] || {};
+  const { english, transcription, russian } = currentWord;
 
   //Посчитать и вывести количество проверенных карточек
   function handleClick() {
@@ -32,7 +34,7 @@ export default function Carusel() {
   // Показать предыдущую карточку
   const showPreviousCard = () => {
     if (position === 0) {
-      setPosition(data.length - 1);
+      setPosition(words.length - 1);
       setPressed(false);
     } else {
       setPosition(position - 1);
@@ -41,7 +43,7 @@ export default function Carusel() {
   };
   // Показать следующую карточку
   const showNextCard = () => {
-    if (position === data.length - 1) {
+    if (position === words.length - 1) {
       setPosition(0);
       setPressed(false);
     } else {
@@ -50,7 +52,7 @@ export default function Carusel() {
     }
   };
 
-  return (
+  return words.length > 0 ? (
     <div>
       <h1>Количество карточек, изученных сегодня: {count}</h1>
       <CardWrapper
@@ -67,8 +69,10 @@ export default function Carusel() {
         />
       </CardWrapper>
       <div className={styles.number}>
-        {position + 1}/{data.length}
+        {position + 1}/{words.length}
       </div>
     </div>
+  ) : (
+    <p>Загрузка данных</p>
   );
 }

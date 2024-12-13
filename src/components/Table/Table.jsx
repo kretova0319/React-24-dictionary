@@ -1,13 +1,20 @@
 import React, { useEffect } from "react";
-// import { data } from "../../data";
 import TableRow from "./TableRow";
 import { useState } from "react";
 import AddWord from "./AddWord";
 
 function Table() {
-  // Получаем с API список слов, загружаем на страницу
+  // Состояние для изначального списка слов
   const [words, setWords] = useState([]);
+  // Состояние для нового слова
+  const [newWord, setNewWord] = useState({
+    english: "",
+    transcription: "",
+    russian: "",
+    tags: "",
+  });
 
+  // Получаем с API список слов, загружаем на страницу
   useEffect(() => {
     getWords();
   }, []);
@@ -15,7 +22,6 @@ function Table() {
   const getWords = async () => {
     const response = await fetch("http://itgirlschool.justmakeit.ru/api/words");
     const datatWords = await response.json();
-    console.log(datatWords);
     setWords(datatWords);
   };
 
@@ -24,11 +30,30 @@ function Table() {
     let newListWords = words.filter((word) => word.id !== id);
     setWords(newListWords);
   };
-  console.log(words);
+
+  //Добавляем новое слово
+  const handleAdd = (e) => {
+    e.preventDefault();
+    const wordToAdd = {
+      id: Math.random().toString(),
+      english: newWord.english,
+      transcription: newWord.transcription,
+      russian: newWord.russian,
+      tags: newWord.tags,
+      // ...newWord, // так можно заменить предыдущие 4 строки
+    };
+    const newListWords = [wordToAdd, ...words];
+    setWords(newListWords);
+    setNewWord({ english: "", transcription: "", tags: "", russian: "" });
+  };
 
   return (
     <div>
-      <AddWord />
+      <AddWord
+        handleAdd={handleAdd}
+        newWord={newWord}
+        setNewWord={setNewWord}
+      />
       <table className="table">
         <caption>List of words</caption>
         <thead>
@@ -43,7 +68,11 @@ function Table() {
         <tbody>
           {words.map((word) => {
             return (
-              <TableRow key={word.id} rowData={word} handleDel={deleteItem} />
+              <TableRow
+                key={word.id}
+                rowData={word}
+                handleDel={() => deleteItem(word.id)}
+              />
             );
           })}
         </tbody>

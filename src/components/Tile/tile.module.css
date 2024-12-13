@@ -36,3 +36,10 @@
   left: 70px;
   background: transparent;
 }
+.radioForm {
+  display: flex;
+  justify-content: space-around;
+}
+input {
+  width: inherit;
+}

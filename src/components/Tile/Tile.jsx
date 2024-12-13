@@ -3,18 +3,10 @@ import FlashCard from "./FlashCard";
 import style from "./tile.module.css";
 
 export default function Tile() {
-  const [isEnglish, setisEnglish] = useState(true);
-
-  const showEnglish = () => {
-    setisEnglish(isEnglish);
-  };
-
-  const showRussian = () => {
-    setisEnglish(!isEnglish);
-  };
+  const [items, setItems] = useState([]); // Состояние для изначального списка слов
+  const [isEnglish, setisEnglish] = useState(true); // Управляет языком отображения
 
   // Получаем с API список слов, загружаем на страницу
-  const [words, setWords] = useState([]);
   useEffect(() => {
     getWords();
   }, []);
@@ -22,25 +14,39 @@ export default function Tile() {
     const response = await fetch("http://itgirlschool.justmakeit.ru/api/words");
     const datatWords = await response.json();
     console.log(datatWords);
-    setWords(datatWords);
+    setItems(datatWords);
+  };
+
+  // Обработчик переключения радио-кнопок
+  const handleLanguageChange = (e) => {
+    setisEnglish(e.target.value === "english");
   };
 
   return (
     <div>
-      <form>
-        <input type="radio" name="language" value="1" onClick={showEnglish} />{" "}
-        Show all ENGLISH
-        <input
-          type="radio"
-          name="language"
-          value="2"
-          onClick={showRussian}
-        />{" "}
-        Show all RUSSIAN
+      <form className={style.radioForm}>
+        <label>
+          <input
+            type="radio"
+            name="language"
+            value="english"
+            onChange={handleLanguageChange}
+          />
+          Show all ENGLISH
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="language"
+            value="russian"
+            onChange={handleLanguageChange}
+          />
+          Show all RUSSIAN
+        </label>
       </form>
       <div className={style.wrapper__tile}>
-        {words.map((card) => (
-          <FlashCard key={card.id} {...card} />
+        {items.map((card) => (
+          <FlashCard key={card.id} {...card} isEnglish={isEnglish} />
         ))}
       </div>
     </div>
