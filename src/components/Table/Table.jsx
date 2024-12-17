@@ -3,15 +3,20 @@ import TableRow from "./TableRow";
 import { WordsContext } from "../Context/WordsContext";
 import Loader from "../Loader/Loader";
 import AddWord from "./AddWord";
+import ChangeTheme from "../Context/ChangeTheme";
 
 function Table() {
-  const { items, deleteItem, isLoaded, handleAdd } = useContext(WordsContext);
+  const { items, handleDel, isLoaded, handleAdd, newWord, setNewWord } =
+    useContext(WordsContext);
 
   return (
     <div>
-      <div>
-        <AddWord />
-      </div>
+      <ChangeTheme />
+      <AddWord
+        handleAdd={handleAdd}
+        newWord={newWord}
+        setNewWord={setNewWord}
+      />
 
       <div>
         {isLoaded ? (
@@ -34,7 +39,7 @@ function Table() {
                   <TableRow
                     key={word.id}
                     rowData={word}
-                    handleDel={deleteItem}
+                    handleDel={() => handleDel(word.id)}
                   />
                 );
               })}

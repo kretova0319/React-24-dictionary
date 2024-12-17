@@ -8,8 +8,6 @@ import useValidation from "../../../src/Hooks/useValidation";
 // добавляем функцию addTask из TaskContext
 // const { newWord, setNewWord, handleAdd } = useContext(WordsContext);
 
-// Добавляем состояние для компонента
-// const [newWord, setNewWord] = useState("");
 export default function AddWord({ newWord, setNewWord, handleAdd }) {
   const {
     inputErrorText,
@@ -23,7 +21,8 @@ export default function AddWord({ newWord, setNewWord, handleAdd }) {
     if (
       isInputError.english ||
       isInputError.transcription ||
-      isInputError.russian
+      isInputError.russian ||
+      isInputError.tags
     ) {
       setIsDisabled(true);
     } else {
@@ -31,6 +30,7 @@ export default function AddWord({ newWord, setNewWord, handleAdd }) {
     }
   }, [isInputError]);
 
+  // функция ввода слов в 4 input-a
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -42,7 +42,8 @@ export default function AddWord({ newWord, setNewWord, handleAdd }) {
       <h2>Add new word</h2>
       <form
         className={styles.wordsContainer}
-        onSubmit={(e) => e.preventDefault()}
+        // Зачем??? ведь и так работает по нажатию на ентер
+        // onSubmit={(e) => e.preventDefault()}
       >
         <div className={styles.wordContainer}>
           <input
@@ -71,12 +72,13 @@ export default function AddWord({ newWord, setNewWord, handleAdd }) {
         <div className={styles.wordContainer}>
           <input
             type="text"
+            name="tags"
             placeholder="Enter theme"
-            value={newWord}
-            onChange={(e) => setNewWord(e.target.value)}
+            value={newWord.tags}
+            onChange={handleChange}
           />
-          {inputErrorText.transcription && isInputError.transcription && (
-            <p className={styles.error}>{inputErrorText.transcription}</p>
+          {inputErrorText.tags && isInputError.tags && (
+            <p className={styles.error}>{inputErrorText.tags}</p>
           )}
         </div>
         <div className={styles.wordContainer}>

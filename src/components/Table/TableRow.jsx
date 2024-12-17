@@ -22,6 +22,7 @@ export default function TableRow({ rowData, handleDel }) {
     english: english,
     transcription: transcription,
     russian: russian,
+    tags: tags,
   });
 
   useEffect(() => {
@@ -97,7 +98,14 @@ export default function TableRow({ rowData, handleDel }) {
               <p className="error">{inputErrorText.russian}</p>
             )}
           </td>
-          <td>{tags}</td>
+          <td>
+            <input
+              type="text"
+              name={"tags"}
+              value={value.tags}
+              onChange={handleChange}
+            />
+          </td>
           <td className="table__btns">
             <Button
               text="Save"

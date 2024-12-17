@@ -2,13 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
-import { WordsProvider } from "./components/Context/WordsContext";
+import { ThemeProvider } from "../src/components/Context/ThemeContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <WordsProvider>
+    <ThemeProvider>
       <App />
-    </WordsProvider>
+    </ThemeProvider>
   </React.StrictMode>
 );

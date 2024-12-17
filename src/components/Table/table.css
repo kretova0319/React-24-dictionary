@@ -1,5 +1,13 @@
 @import "../../variables.css";
-
+.table__btns {
+  display: flex;
+  border-bottom: none;
+  border-left: none;
+  border-right: none;
+  /* border-top: none; */
+  /* border: none; */
+  justify-content: space-evenly;
+}
 table {
   width: 90%;
   margin: 30px auto;
@@ -50,11 +58,7 @@ input {
   font-size: 14px;
   color: #333;
 }
-.table__btns {
-  display: flex;
-  border: 1px solid #939090;
-  justify-content: space-evenly;
-}
+
 .error {
   color: red;
   font-size: 12px;

@@ -6,22 +6,25 @@ import Table from "./components/Table/Table";
 import Carusel from "./components/Carusel/Carusel";
 import Tile from "./components/Tile/Tile";
 import Error from "./components/404/Error";
+import { WordsProvider } from "./components/Context/WordsContext";
 
 function App() {
   return (
-    <Router>
-      <Header />
-      <main className={style.wrapper__main}>
-        <Routes>
-          <Route path="/" element={<Table />} />
-          <Route path="/table" element={<Table />} />
-          <Route path="/game" element={<Carusel />} />
-          <Route path="/tile" element={<Tile />} />
-          <Route path="*" element={<Error />} />
-        </Routes>
-      </main>
-      <Footer />
-    </Router>
+    <WordsProvider>
+      <Router>
+        <Header />
+        <main className={style.wrapper__main}>
+          <Routes>
+            <Route path="/" element={<Table />} />
+            <Route path="/table" element={<Table />} />
+            <Route path="/game" element={<Carusel />} />
+            <Route path="/tile" element={<Tile />} />
+            <Route path="*" element={<Error />} />
+          </Routes>
+        </main>
+        <Footer />
+      </Router>
+    </WordsProvider>
   );
 }
 

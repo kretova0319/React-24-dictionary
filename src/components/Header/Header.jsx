@@ -1,6 +1,5 @@
 import { NavLink } from "react-router-dom";
 import style from "./header.module.css";
-// import "./header.css";
 
 function Header() {
   return (
@@ -9,7 +8,7 @@ function Header() {
         <NavLink end to="/table">
           <img
             className={style.logo}
-            src="https://sstk.biz/images/studystacklogo.svg"
+            src="https://cdn-icons-png.flaticon.com/128/4459/4459205.png"
             alt="логотип сайта"
           ></img>
         </NavLink>

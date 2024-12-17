@@ -5,33 +5,37 @@ import { WordsContext } from "../Context/WordsContext";
 
 export default function Tile() {
   const { items } = useContext(WordsContext);
+  const [isEnglish, setisEnglish] = useState(true); // Управляет языком отображения
 
-  const [isEnglish, setisEnglish] = useState(true);
-
-  const showEnglish = () => {
-    setisEnglish(true);
-  };
-
-  const showRussian = () => {
-    setisEnglish(false);
+  // Обработчик переключения радио-кнопок
+  const handleLanguageChange = (e) => {
+    setisEnglish(e.target.value === "english");
   };
   return (
     <div>
-      <form>
-        <input type="radio" name="language" value="1" onClick={showEnglish} />{" "}
-        Show all ENGLISH
-        <input
-          type="radio"
-          name="language"
-          value="2"
-          onClick={showRussian}
-        />{" "}
-        Show all RUSSIAN
+      <form className={style.radioForm}>
+        <label>
+          <input
+            type="radio"
+            name="language"
+            value="english"
+            onChange={handleLanguageChange}
+          />
+          Show all ENGLISH
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="language"
+            value="russian"
+            onChange={handleLanguageChange}
+          />
+          Show all RUSSIAN
+        </label>
       </form>
-
       <div className={style.wrapper__tile}>
         {items.map((card) => (
-          <FlashCard key={card.id} {...card} />
+          <FlashCard key={card.id} {...card} isEnglish={isEnglish} />
         ))}
       </div>
     </div>

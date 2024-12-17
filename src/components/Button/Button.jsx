@@ -5,7 +5,7 @@ export default function Button({ text, color, handler, id, handleDisabled }) {
   return (
     <button
       className={`${styles.btnTable} ${styles[color]}`}
-      onClick={() => handler(id)}
+      onClick={handler}
       disabled={handleDisabled}
     >
       {text}
