@@ -1,41 +1,41 @@
 import Button from "../Button/Button";
 import styles from "./addWord.module.css";
-import React, { useContext, useEffect } from "react";
-import { WordsContext } from "../Context/WordsContext";
-import useValidation from "../../../src/Hooks/useValidation";
+// import React, { useContext, useEffect } from "react";
+// import { WordsContext } from "../Context/WordsContext";
+// import useValidation from "../../../src/Hooks/useValidation";
+import { observer } from "mobx-react-lite";
+import { useStore } from "../../Store/TaskStoreContext";
 
-// export default function AddWord() {
-// добавляем функцию addTask из TaskContext
-// const { newWord, setNewWord, handleAdd } = useContext(WordsContext);
+const AddWord = observer(() => {
+  const { taskStore } = useStore();
+  // const {
+  //   inputErrorText,
+  //   isInputError,
+  //   isDisabled,
+  //   setIsDisabled,
+  //   validateField,
+  // } = useValidation();
 
-export default function AddWord({ newWord, setNewWord, handleAdd }) {
-  const {
-    inputErrorText,
-    isInputError,
-    isDisabled,
-    setIsDisabled,
-    validateField,
-  } = useValidation();
-
-  useEffect(() => {
-    if (
-      isInputError.english ||
-      isInputError.transcription ||
-      isInputError.russian ||
-      isInputError.tags
-    ) {
-      setIsDisabled(true);
-    } else {
-      setIsDisabled(false);
-    }
-  }, [isInputError]);
+  // Валидация для кнопки "Add"
+  // useEffect(() => {
+  //   if (
+  //     isInputError.english ||
+  //     isInputError.transcription ||
+  //     isInputError.russian ||
+  //     isInputError.tags
+  //   ) {
+  //     setIsDisabled(true);
+  //   } else {
+  //     setIsDisabled(false);
+  //   }
+  // }, [isInputError]);
 
   // функция ввода слов в 4 input-a
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    validateField(name, value);
-    setNewWord((prev) => ({ ...prev, [name]: value })); // Обновляем значение в `newWord`
+    // validateField(name, value);
+    taskStore.newWord[name] = value; // Обновляем значение в `newWord`
   };
   return (
     <div className={styles.newword}>
@@ -50,56 +50,57 @@ export default function AddWord({ newWord, setNewWord, handleAdd }) {
             type="text"
             name="english"
             placeholder="Enter english word"
-            value={newWord.english}
+            value={taskStore.newWord.english}
             onChange={handleChange}
           />
-          {inputErrorText.english && isInputError.english && (
+          {/* {inputErrorText.english && isInputError.english && (
             <p className={styles.error}>{inputErrorText.english}</p>
-          )}
+          )} */}
         </div>
         <div className={styles.wordContainer}>
           <input
             type="text"
             name="transcription"
             placeholder="Enter transcription"
-            value={newWord.transcription}
+            value={taskStore.newWord.transcription}
             onChange={handleChange}
           />
-          {inputErrorText.transcription && isInputError.transcription && (
+          {/* {inputErrorText.transcription && isInputError.transcription && (
             <p className={styles.error}>{inputErrorText.transcription}</p>
-          )}
+          )} */}
         </div>
         <div className={styles.wordContainer}>
           <input
             type="text"
             name="tags"
             placeholder="Enter theme"
-            value={newWord.tags}
+            value={taskStore.newWord.tags}
             onChange={handleChange}
           />
-          {inputErrorText.tags && isInputError.tags && (
+          {/* {inputErrorText.tags && isInputError.tags && (
             <p className={styles.error}>{inputErrorText.tags}</p>
-          )}
+          )} */}
         </div>
         <div className={styles.wordContainer}>
           <input
             type="text"
             name="russian"
             placeholder="Enter russian word"
-            value={newWord.russian}
+            value={taskStore.newWord.russian}
             onChange={handleChange}
           />
-          {inputErrorText.russian && isInputError.russian && (
+          {/* {inputErrorText.russian && isInputError.russian && (
             <p className={styles.error}>{inputErrorText.russian}</p>
-          )}
+          )} */}
         </div>
         <Button
           text="Add"
           color="btnGrassGreen"
-          handler={handleAdd}
-          handleDisabled={isDisabled}
+          handler={taskStore.handleAdd}
+          // handleDisabled={isDisabled}
         />
       </form>
     </div>
   );
-}
+});
+export default AddWord;

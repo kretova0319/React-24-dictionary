@@ -3,7 +3,6 @@ import Card from "../Cards/Card";
 import CardWrapper from "../CardWrapper/CardWrapper";
 import styles from "./carusel.module.css";
 import { WordsContext } from "../Context/WordsContext";
-// import { items } from "../../data";
 
 export default function Carusel() {
   //передаем состояние (слова из API) из WordsContext

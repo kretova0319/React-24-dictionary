@@ -1,25 +1,21 @@
-import React, { useContext } from "react";
+import React from "react";
 import TableRow from "./TableRow";
-import { WordsContext } from "../Context/WordsContext";
 import Loader from "../Loader/Loader";
 import AddWord from "./AddWord";
 import ChangeTheme from "../Context/ChangeTheme";
+import { observer } from "mobx-react-lite";
+import { useStore } from "../../Store/TaskStoreContext";
 
-function Table() {
-  const { items, handleDel, isLoaded, handleAdd, newWord, setNewWord } =
-    useContext(WordsContext);
+const Table = observer(() => {
+  const { taskStore } = useStore();
 
   return (
     <div>
       <ChangeTheme />
-      <AddWord
-        handleAdd={handleAdd}
-        newWord={newWord}
-        setNewWord={setNewWord}
-      />
+      <AddWord />
 
       <div>
-        {isLoaded ? (
+        {taskStore.isLoaded ? (
           <Loader />
         ) : (
           <table className="table">
@@ -34,12 +30,12 @@ function Table() {
               </tr>
             </thead>
             <tbody>
-              {items.map((word) => {
+              {taskStore.words.map((word) => {
                 return (
                   <TableRow
                     key={word.id}
                     rowData={word}
-                    handleDel={() => handleDel(word.id)}
+                    handleDel={() => taskStore.handleDel(word.id)}
                   />
                 );
               })}
@@ -49,6 +45,6 @@ function Table() {
       </div>
     </div>
   );
-}
+});
 
 export default Table;

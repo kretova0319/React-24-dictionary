@@ -6,11 +6,11 @@ import Table from "./components/Table/Table";
 import Carusel from "./components/Carusel/Carusel";
 import Tile from "./components/Tile/Tile";
 import Error from "./components/404/Error";
-import { WordsProvider } from "./components/Context/WordsContext";
+import { TaskStoreProvider } from "./Store/TaskStoreContext";
 
 function App() {
   return (
-    <WordsProvider>
+    <TaskStoreProvider>
       <Router>
         <Header />
         <main className={style.wrapper__main}>
@@ -24,7 +24,7 @@ function App() {
         </main>
         <Footer />
       </Router>
-    </WordsProvider>
+    </TaskStoreProvider>
   );
 }
 

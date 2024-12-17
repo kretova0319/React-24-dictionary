@@ -42,12 +42,9 @@ const WordsProvider = ({ children }) => {
   const handleSave = async (value, id) => {
     try {
       const response = await fetch(
-        `http://itgirlschool.justmakeit.ru/api/words/${id}/22/update`,
+        `http://itgirlschool.justmakeit.ru/api/words/${id}/update`,
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
           body: JSON.stringify({
             english: value.english,
             transcription: value.transcription,
@@ -59,7 +56,7 @@ const WordsProvider = ({ children }) => {
       if (!response.ok) {
         throw new Error("Failed to save word");
       }
-      await loadData();
+      loadData();
     } catch (error) {
       console.error("Error saving word:", error);
     }
@@ -116,7 +113,7 @@ const WordsProvider = ({ children }) => {
   const handleDel = async (id) => {
     try {
       const response = await fetch(
-        `http://itgirlschool.justmakeit.ru/api/words/${id}/22/delete`,
+        `http://itgirlschool.justmakeit.ru/api/words/${id}`,
         {
           method: "DELETE",
         }
