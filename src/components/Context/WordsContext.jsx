@@ -42,7 +42,7 @@ const WordsProvider = ({ children }) => {
   const handleSave = async (value, id) => {
     try {
       const response = await fetch(
-        `http://itgirlschool.justmakeit.ru/api/words/${id}/22/update`,
+        `http://itgirlschool.justmakeit.ru/api/words/${id}/update`,
         {
           method: "POST",
           headers: {
@@ -116,7 +116,7 @@ const WordsProvider = ({ children }) => {
   const handleDel = async (id) => {
     try {
       const response = await fetch(
-        `http://itgirlschool.justmakeit.ru/api/words/${id}/22/delete`,
+        `http://itgirlschool.justmakeit.ru/api/words/${id}`,
         {
           method: "DELETE",
         }
