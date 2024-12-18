@@ -1,7 +1,7 @@
 import Button from "../Button/Button";
 import styles from "./addWord.module.css";
 import React, { useContext, useEffect } from "react";
-import { WordsContext } from "../Context/WordsContext";
+import { WordsContext } from "../../Context/WordsContext";
 import useValidation from "../../../src/Hooks/useValidation";
 
 // export default function AddWord() {

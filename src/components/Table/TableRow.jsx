@@ -4,7 +4,7 @@ import Button from "../Button/Button";
 import "./table.css";
 import "../Button/button.module.css";
 import useValidation from "../../../src/Hooks/useValidation";
-import { WordsContext } from "../Context/WordsContext";
+import { WordsContext } from "../../Context/WordsContext";
 
 export default function TableRow({ rowData, handleDel }) {
   const { handleSave } = useContext(WordsContext);

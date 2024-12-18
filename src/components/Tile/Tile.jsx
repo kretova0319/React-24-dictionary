@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import FlashCard from "./FlashCard";
 import style from "./tile.module.css";
-import { WordsContext } from "../Context/WordsContext";
+import { WordsContext } from "../../Context/WordsContext";
 
 export default function Tile() {
   const { items } = useContext(WordsContext);

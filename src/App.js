@@ -6,7 +6,7 @@ import Table from "./components/Table/Table";
 import Carusel from "./components/Carusel/Carusel";
 import Tile from "./components/Tile/Tile";
 import Error from "./components/404/Error";
-import { WordsProvider } from "./components/Context/WordsContext";
+import { WordsProvider } from "./Context/WordsContext";
 
 function App() {
   return (

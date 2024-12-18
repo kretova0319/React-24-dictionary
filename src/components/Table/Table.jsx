@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import TableRow from "./TableRow";
-import { WordsContext } from "../Context/WordsContext";
+import { WordsContext } from "../../Context/WordsContext";
 import Loader from "../Loader/Loader";
 import AddWord from "./AddWord";
-import ChangeTheme from "../Context/ChangeTheme";
+import ChangeTheme from "../../Context/ChangeTheme";
 
 function Table() {
   const { items, handleDel, isLoaded, handleAdd, newWord, setNewWord } =

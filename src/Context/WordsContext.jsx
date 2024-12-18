@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
-import Loader from "../Loader/Loader";
+import Loader from "../components/Loader/Loader";
 const WordsContext = createContext();
 
 const WordsProvider = ({ children }) => {
