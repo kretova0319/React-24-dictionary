@@ -1,40 +1,39 @@
 import Button from "../Button/Button";
 import styles from "./addWord.module.css";
-// import React, { useContext, useEffect } from "react";
-// import { WordsContext } from "../Context/WordsContext";
-// import useValidation from "../../../src/Hooks/useValidation";
+import React, { useEffect } from "react";
+import useValidation from "../../../src/Hooks/useValidation";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../../Store/TaskStoreContext";
 
 const AddWord = observer(() => {
   const { taskStore } = useStore();
-  // const {
-  //   inputErrorText,
-  //   isInputError,
-  //   isDisabled,
-  //   setIsDisabled,
-  //   validateField,
-  // } = useValidation();
+  const {
+    inputErrorText,
+    isInputError,
+    isDisabled,
+    setIsDisabled,
+    validateField,
+  } = useValidation();
 
   // Валидация для кнопки "Add"
-  // useEffect(() => {
-  //   if (
-  //     isInputError.english ||
-  //     isInputError.transcription ||
-  //     isInputError.russian ||
-  //     isInputError.tags
-  //   ) {
-  //     setIsDisabled(true);
-  //   } else {
-  //     setIsDisabled(false);
-  //   }
-  // }, [isInputError]);
+  useEffect(() => {
+    if (
+      isInputError.english ||
+      isInputError.transcription ||
+      isInputError.russian ||
+      isInputError.tags
+    ) {
+      setIsDisabled(true);
+    } else {
+      setIsDisabled(false);
+    }
+  }, [isInputError, setIsDisabled]);
 
   // функция ввода слов в 4 input-a
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    // validateField(name, value);
+    validateField(name, value);
     taskStore.newWord[name] = value; // Обновляем значение в `newWord`
   };
   return (
@@ -53,9 +52,9 @@ const AddWord = observer(() => {
             value={taskStore.newWord.english}
             onChange={handleChange}
           />
-          {/* {inputErrorText.english && isInputError.english && (
+          {inputErrorText.english && isInputError.english && (
             <p className={styles.error}>{inputErrorText.english}</p>
-          )} */}
+          )}
         </div>
         <div className={styles.wordContainer}>
           <input
@@ -65,9 +64,9 @@ const AddWord = observer(() => {
             value={taskStore.newWord.transcription}
             onChange={handleChange}
           />
-          {/* {inputErrorText.transcription && isInputError.transcription && (
+          {inputErrorText.transcription && isInputError.transcription && (
             <p className={styles.error}>{inputErrorText.transcription}</p>
-          )} */}
+          )}
         </div>
         <div className={styles.wordContainer}>
           <input
@@ -77,9 +76,9 @@ const AddWord = observer(() => {
             value={taskStore.newWord.tags}
             onChange={handleChange}
           />
-          {/* {inputErrorText.tags && isInputError.tags && (
+          {inputErrorText.tags && isInputError.tags && (
             <p className={styles.error}>{inputErrorText.tags}</p>
-          )} */}
+          )}
         </div>
         <div className={styles.wordContainer}>
           <input
@@ -89,15 +88,15 @@ const AddWord = observer(() => {
             value={taskStore.newWord.russian}
             onChange={handleChange}
           />
-          {/* {inputErrorText.russian && isInputError.russian && (
+          {inputErrorText.russian && isInputError.russian && (
             <p className={styles.error}>{inputErrorText.russian}</p>
-          )} */}
+          )}
         </div>
         <Button
           text="Add"
           color="btnGrassGreen"
           handler={taskStore.handleAdd}
-          // handleDisabled={isDisabled}
+          handleDisabled={isDisabled}
         />
       </form>
     </div>

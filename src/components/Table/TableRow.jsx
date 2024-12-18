@@ -1,13 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useEffect, useState } from "react";
 import Button from "../Button/Button";
 import "./table.css";
 import "../Button/button.module.css";
 import useValidation from "../../../src/Hooks/useValidation";
-import { WordsContext } from "../Context/WordsContext";
+import { observer } from "mobx-react-lite";
 
-export default function TableRow({ rowData, handleDel }) {
-  const { handleSave } = useContext(WordsContext);
+const TableRow = observer(({ rowData, handleDel, handleSave }) => {
   const {
     inputErrorText,
     isInputError,
@@ -35,7 +34,7 @@ export default function TableRow({ rowData, handleDel }) {
     } else {
       setIsDisabled(false);
     }
-  }, [isInputError]);
+  }, [isInputError, setIsDisabled]);
 
   function handleChange(event) {
     const name = event.target.name;
@@ -130,4 +129,5 @@ export default function TableRow({ rowData, handleDel }) {
       )}
     </tr>
   );
-}
+});
+export default TableRow;

@@ -1,11 +1,16 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import FlashCard from "./FlashCard";
 import style from "./tile.module.css";
-import { WordsContext } from "../Context/WordsContext";
+import { useStore } from "../../Store/TaskStoreContext";
+import { observer } from "mobx-react-lite";
 
-export default function Tile() {
-  const { items } = useContext(WordsContext);
+const Tile = observer(() => {
+  const { taskStore } = useStore();
   const [isEnglish, setisEnglish] = useState(true); // Управляет языком отображения
+
+  useEffect(() => {
+    taskStore.loadData();
+  }, [taskStore]);
 
   // Обработчик переключения радио-кнопок
   const handleLanguageChange = (e) => {
@@ -19,6 +24,7 @@ export default function Tile() {
             type="radio"
             name="language"
             value="english"
+            checked={isEnglish}
             onChange={handleLanguageChange}
           />
           Show all ENGLISH
@@ -28,16 +34,18 @@ export default function Tile() {
             type="radio"
             name="language"
             value="russian"
+            checked={!isEnglish}
             onChange={handleLanguageChange}
           />
           Show all RUSSIAN
         </label>
       </form>
       <div className={style.wrapper__tile}>
-        {items.map((card) => (
+        {taskStore.words.map((card) => (
           <FlashCard key={card.id} {...card} isEnglish={isEnglish} />
         ))}
       </div>
     </div>
   );
-}
+});
+export default Tile;

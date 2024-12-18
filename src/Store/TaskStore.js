@@ -20,8 +20,14 @@ class TaskStore {
     try {
       this.isLoaded = true;
       const response = await fetch(
-        "http://itgirlschool.justmakeit.ru/api/words"
+        "http://itgirlschool.justmakeit.ru/api/words",
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
       );
+
       if (!response.ok) {
         throw new Error("Failed to fetch words");
       }
@@ -97,6 +103,32 @@ class TaskStore {
       this.words = this.words.filter((word) => word.id !== id);
     } catch (error) {
       console.error("Error deleting word:", error);
+    }
+  };
+
+  //Редактируем и сохраняем слова (уже существующие в таблице)
+  handleSave = async (value, id) => {
+    try {
+      const response = await fetch(
+        `http://itgirlschool.justmakeit.ru/api/words/${id}/update`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            english: value.english,
+            transcription: value.transcription,
+            russian: value.russian,
+            tags: value.tags,
+          }),
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Failed to save word");
+      }
+    } catch (error) {
+      console.error("Error saving word:", error);
     }
   };
 }

@@ -2,12 +2,17 @@ import React from "react";
 import TableRow from "./TableRow";
 import Loader from "../Loader/Loader";
 import AddWord from "./AddWord";
-import ChangeTheme from "../Context/ChangeTheme";
+import ChangeTheme from "../../Context/ChangeTheme";
 import { observer } from "mobx-react-lite";
 import { useStore } from "../../Store/TaskStoreContext";
+import { useEffect } from "react";
 
 const Table = observer(() => {
   const { taskStore } = useStore();
+
+  useEffect(() => {
+    taskStore.loadData();
+  }, [taskStore]);
 
   return (
     <div>
@@ -36,6 +41,7 @@ const Table = observer(() => {
                     key={word.id}
                     rowData={word}
                     handleDel={() => taskStore.handleDel(word.id)}
+                    handleSave={taskStore.handleSave}
                   />
                 );
               })}
